@@ -111,99 +111,46 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Header */}
-      <header className="bg-black/20 backdrop-blur-sm border-b border-purple-500/20">
+      <header className="bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
-                <Icon name="Gamepad2" size={24} className="text-white" />
-              </div>
-              <h1 className="text-2xl font-bold text-white">SkinMarket</h1>
-            </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Магазин
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Продать
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Инвентарь
-              </a>
-              <Button
-                variant="outline"
-                className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white"
-              >
-                <Icon name="User" size={16} className="mr-2" />
+            <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              EasySkins
+            </h1>
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" className="text-white hover:bg-white/10">
+                <Icon name="User" size={20} className="mr-2" />
                 Войти
               </Button>
-            </nav>
+              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                <Icon name="ShoppingCart" size={20} className="mr-2" />
+                Корзина
+              </Button>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 text-center">
+      <section className="py-20 text-center">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-bold text-white mb-4">
-            Лучшие скины <span className="text-purple-400">CS:GO</span>
+          <h2 className="text-5xl font-bold text-white mb-6">
+            Лучшие скины CS2
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Покупай и продавай скины безопасно. Мгновенные сделки, низкие
-            комиссии, честные цены.
+            Покупайте и продавайте скины CS2 на EasySkins - самой надёжной
+            торговой площадке
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+          <div className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
             <Input
-              placeholder="Поиск скинов..."
+              placeholder="Найти скин..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-black/30 border-purple-500/30 text-white placeholder:text-gray-400"
+              className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
             />
-            <Button className="bg-purple-600 hover:bg-purple-700 whitespace-nowrap">
-              <Icon name="Search" size={16} className="mr-2" />
-              Найти
+            <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+              <Icon name="Search" size={20} />
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-8 bg-black/20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">
-                15,847
-              </div>
-              <div className="text-gray-400">Активных предложений</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">
-                ₽2.4M
-              </div>
-              <div className="text-gray-400">Оборот за день</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">
-                98.7%
-              </div>
-              <div className="text-gray-400">Успешных сделок</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">
-                0.5%
-              </div>
-              <div className="text-gray-400">Комиссия</div>
-            </div>
           </div>
         </div>
       </section>
@@ -211,18 +158,16 @@ const Index = () => {
       {/* Categories */}
       <section className="py-8">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <Button
                 key={category.id}
-                variant={
-                  selectedCategory === category.id ? "default" : "outline"
-                }
+                variant={selectedCategory === category.id ? "default" : "ghost"}
                 onClick={() => setSelectedCategory(category.id)}
                 className={`${
                   selectedCategory === category.id
-                    ? "bg-purple-600 text-white"
-                    : "border-purple-500/30 text-purple-400 hover:bg-purple-500/20"
+                    ? "bg-gradient-to-r from-purple-500 to-pink-500"
+                    : "text-white hover:bg-white/10"
                 }`}
               >
                 <Icon name={category.icon as any} size={16} className="mr-2" />
@@ -240,49 +185,44 @@ const Index = () => {
             {filteredSkins.map((skin) => (
               <Card
                 key={skin.id}
-                className="bg-black/30 border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 cursor-pointer group"
+                className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105"
               >
                 <CardHeader className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <img
-                      src={skin.image}
-                      alt={skin.name}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute top-3 right-3">
-                      <Badge
-                        className={`${getRarityColor(skin.rarity)} text-white`}
-                      >
-                        {skin.rarity}
-                      </Badge>
-                    </div>
-                  </div>
+                  <img
+                    src={skin.image}
+                    alt={skin.name}
+                    className="w-full h-48 object-cover rounded-t-lg"
+                  />
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CardTitle className="text-white text-lg mb-2 group-hover:text-purple-400 transition-colors">
-                    {skin.name}
-                  </CardTitle>
-                  <div className="space-y-2 mb-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Износ:</span>
-                      <span className="text-gray-300">{skin.wear}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Float:</span>
-                      <span className="text-gray-300">{skin.float}</span>
-                    </div>
+                  <CardTitle className="text-white mb-2">{skin.name}</CardTitle>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Badge
+                      className={`${getRarityColor(skin.rarity)} text-white`}
+                    >
+                      {skin.rarity}
+                    </Badge>
+                    <Badge
+                      variant="outline"
+                      className="text-gray-300 border-gray-500"
+                    >
+                      {skin.wear}
+                    </Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-purple-400">
+                    <span className="text-2xl font-bold text-green-400">
                       ₽{skin.price.toLocaleString()}
                     </span>
                     <Button
                       size="sm"
-                      className="bg-purple-600 hover:bg-purple-700"
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
                     >
                       <Icon name="ShoppingCart" size={16} className="mr-1" />
                       Купить
                     </Button>
+                  </div>
+                  <div className="text-sm text-gray-400 mt-2">
+                    Float: {skin.float}
                   </div>
                 </CardContent>
               </Card>
@@ -292,84 +232,11 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/40 py-12 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                  <Icon name="Gamepad2" size={20} className="text-white" />
-                </div>
-                <span className="text-xl font-bold text-white">SkinMarket</span>
-              </div>
-              <p className="text-gray-400">
-                Надежная торговая площадка для CS:GO скинов
-              </p>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Покупателям</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Как купить
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Гарантии
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    FAQ
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Продавцам</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Как продать
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Комиссии
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Выплаты
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Поддержка</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Контакты
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Правила
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Помощь
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-purple-500/20 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 SkinMarket. Все права защищены.</p>
-          </div>
+      <footer className="bg-black/20 border-t border-white/10 py-8 mt-16">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-400">
+            © 2024 EasySkins. Все права защищены.
+          </p>
         </div>
       </footer>
     </div>
